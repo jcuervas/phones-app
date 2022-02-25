@@ -29,6 +29,9 @@ services:
     build:
       context: ./phones-api
       dockerfile: Dockerfile
+    volumes:
+      - "./phones-api/migration:/home/api/migration"
+      - "./phones-api/mock:/home/api/mock"
 
     restart: unless-stopped
     command: node main

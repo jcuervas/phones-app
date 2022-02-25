@@ -19,10 +19,6 @@ COPY package.json .
 
 RUN yarn install
 
-COPY migration ./migration
-
-COPY mock ./mock
-
 COPY --from=builder /home/api/dist/ .
 
 
