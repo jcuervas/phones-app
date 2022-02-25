@@ -1,0 +1,38 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.carousel-root {
+  width: 450px;
+}
+.carousel .thumbs-wrapper  {
+  height: 120px;
+}
+.slider img {
+  width: auto;
+  height: 400px;
+  object-fit: contain;
+}
+.carousel .thumb {
+  height: 100px;
+}
+.carousel .thumb img {
+  object-fit: contain;
+  height: 100%;
+}
+.carousel .thumb.selected, .carousel .thumb:hover  {
+  border: 2px solid #333!important;
+}
