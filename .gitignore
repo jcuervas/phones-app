@@ -1,0 +1,7 @@
+/mysql/data/
+/phones-api/node_modules/
+/phones-app/node_modules/
+/phones-app/.next/
+/phones-api/dist/
+/.idea/
+*.log
