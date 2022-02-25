@@ -10,7 +10,7 @@ ddbb: ## start database service
 	docker-compose up -d ddbb
 	docker-compose up -d api
 	docker-compose exec api yarn migration:run
-	docker-compose down api
+	docker-compose stop api
 
 dev-api: ## start nest api for local development
 	cd phones-api && NODE_OPTIONS='-r dotenv/config' yarn start:dev
