@@ -14,7 +14,8 @@ Application just shows a phones listing with some basic filtering and pagination
 Each phone has a detail page which shows more information and pictures in a carousel
 
 ## Getting started
-To simplify development i rely on Make to execute commands.
+To simplify development i rely on Make to execute commands.  
+Please, be sure to setup your env files by renaming .env.sample files to .env
 
 ### Setup
 To install make:
@@ -53,6 +54,8 @@ This will build and start all containers. After that will run migrations and see
 ## Tests
 run ``make tests-e2e-api`` to run api tests and ``make tests-e2e-app`` to run app tests
 
+## Api Docs
+To see api docs just start ddbb and api containers and navigate to ``http://localhost:3005``
 
 ## Author notes
 There are some more things i couldn't cover just for a matter of time like error handling, 
