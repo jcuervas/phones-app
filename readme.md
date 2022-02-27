@@ -13,6 +13,17 @@ This application is built on javascript stack using the following:
 Application just shows a phones listing with some basic filtering and pagination (server side). 
 Each phone has a detail page which shows more information and pictures in a carousel
 
+## Folder structure
+
+This repository joins backend, datalayer and frontend implementation, which normally would live in separate
+repositories or with submodules in a monorepo orchestrated by docker. For the sake of simplicity as this is 
+a demo project i've decided to join all layers in the same one. 
+Folders structure is as follow:
+- mysql: has sql initialization and .env files needed by docker
+- phones-api: has backend code (Nestjs)
+- phones-app: has frontend code (Nextjs)
+- Root folder: where makefile, docker-compose and this readme live.
+
 ## Getting started
 To simplify development i rely on Make to execute commands.  
 Please, be sure to setup your env files by renaming .env.sample files to .env
