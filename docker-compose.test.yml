@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  ddbb:
+    container_name: phones-ddbb-test
+    hostname: phones-ddbb-test
+    image: mysql
+    env_file:
+      - ./mysql/.env.test
+    ports:
+      - "3309:3306"
+    restart: unless-stopped
+    volumes:
+      - "./mysql/data-test/:/var/lib/mysql"
+      - "./mysql/mysql-dump/schema.sql:/docker-entrypoint-initdb.d/schema.sql"
+    networks:
+      phones-test:
+  api:
+    container_name: phones-api-test
+    image: phones-api-test
+    env_file:
+      - ./phones-api/.env.test
+    environment:
+      NODE_ENV: test
+    depends_on:
+      - ddbb
+    ports:
+      - "3006:3006"
+    build:
+      context: ./phones-api
+      dockerfile: Dockerfile
+    volumes:
+      - "./phones-api/migration:/home/api/migration"
+      - "./phones-api/mock:/home/api/mock"
+
+    restart: unless-stopped
+    command: node main
+    networks:
+      phones-test:
+
+networks:
+  phones-test:

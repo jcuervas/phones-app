@@ -2,10 +2,17 @@ import {QueryOptions} from "../../models/queryOptions";
 
 export type PhonesResponse = [Phone[], number]
 
-export interface PhoneQueryOptions extends QueryOptions {}
+export interface PhoneQueryOptions extends QueryOptions {
+}
+
+export interface UpdatePhoneResult {
+  generatedMaps: any[],
+  raw: any[],
+  affected: number
+}
 
 export interface Phone {
-  id: number;
+  id?: number;
   name: string;
   slug: string;
   manufacturer: string;

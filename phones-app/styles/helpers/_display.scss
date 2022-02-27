@@ -1,0 +1,11 @@
+@each $prop in (block, inline, inline-block, flex, grid, none) {
+  .display-#{$prop} {
+    display: $prop!important;
+  }
+}
+@for $index from 0 through 10 {
+  $value: $index/10;
+  .opacity-#{$index} {
+    opacity: $value;
+  }
+}

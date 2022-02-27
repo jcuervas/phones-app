@@ -19,7 +19,12 @@ export class PhoneService {
   ) {}
 
   create(createPhoneDto: CreatePhoneDto) {
-    return this.repository.create(createPhoneDto);
+    const slug = createPhoneDto.name
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .toLowerCase()
+      .replace(/\s+/g, '-');
+    return this.repository.save({ ...createPhoneDto, slug });
   }
 
   findAll(params: QueryOptions) {
@@ -45,11 +50,19 @@ export class PhoneService {
     return this.repository.findOneOrFail({ slug });
   }
 
-  update(id: number, updatePhoneDto: UpdatePhoneDto) {
-    return this.repository.update(id, updatePhoneDto);
+  update(slug: string, updatePhoneDto: UpdatePhoneDto) {
+    return this.repository
+      .createQueryBuilder('p')
+      .update(updatePhoneDto)
+      .where('slug = :slug', { slug })
+      .execute();
   }
 
-  remove(id: number) {
-    return this.repository.delete(id);
+  remove(slug: string) {
+    return this.repository
+      .createQueryBuilder('p')
+      .delete()
+      .where('slug = :slug', { slug })
+      .execute();
   }
 }

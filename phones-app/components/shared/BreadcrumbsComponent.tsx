@@ -14,7 +14,7 @@ export default function BreadcrumbsComponent(props: BreadcrumbsProps) {
 
   return (
     <Breadcrumbs>
-      <Link underline="hover" href="/">Home</Link>
+      <Link underline="always" href="/">Home</Link>
       {list.map((bc, i) => {
         return i === list.length - 1
           ? (<Link underline="hover" href={bc.link} key={i}>{bc.label}</Link>)

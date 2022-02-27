@@ -1,7 +1,7 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import {PhoneService} from "service/phone.service";
 import {Phone, PhoneQueryOptions} from "components/phones/phone.model";
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Container, Fab, Typography} from "@mui/material";
 import Head from 'next/head'
 import {useRouter} from "next/router";
 import {GetServerSidePropsContext} from "next";
@@ -10,7 +10,7 @@ import PhonesGrid from "components/phones/PhonesGrid";
 import FooterComponent from "components/shared/FooterComponent";
 import PhoneFilters from "components/phones/PhoneFilters";
 import BreadcrumbsComponent, {Breadcrumb} from "components/shared/BreadcrumbsComponent";
-import {useState} from "react";
+import AddIcon from '@mui/icons-material/Add';
 
 interface AppProps {
   phones: Phone[],
@@ -22,7 +22,7 @@ function HomePage(props: AppProps) {
   const {phones, count, breadcrumbs} = props;
   const snackbar = useSnackbar();
   const router = useRouter()
-  const [search, setSearch] = useState(router.query.query as string || '')
+
   function getPhones(params: PhoneQueryOptions) {
     const {page, pageSize, query} = params
     router.push({
@@ -41,7 +41,13 @@ function HomePage(props: AppProps) {
         <title>Phones App</title>
       </Head>
       <Container maxWidth="xl" className={styles.main}>
-        <BreadcrumbsComponent list={breadcrumbs}/>
+        <Box sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+          <BreadcrumbsComponent list={breadcrumbs}/>
+          <Fab href="/create" color="primary" >
+            <AddIcon/>
+          </Fab>
+        </Box>
+
         <Typography variant="h1" className={styles.title}>
           This is your awesome phone store, but don't try to buy anything!
         </Typography>

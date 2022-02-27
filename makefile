@@ -7,8 +7,7 @@ prod: ## start all the containers and run migrations
 	docker-compose exec api yarn migration:run
 
 ddbb: ## start database service
-	docker-compose up -d ddbb
-	docker-compose up -d api
+	docker-compose up -d ddbb api
 	docker-compose exec api yarn migration:run
 	docker-compose stop api
 
@@ -18,8 +17,13 @@ dev-api: ## start nest api for local development
 dev-app: ## start next app for local development
 	cd phones-app && yarn dev
 
-tests-e2e-api: ## Run api tests
-	cd phones-api && NODE_OPTIONS='-r dotenv/config' yarn test:e2e
+api-test-start: ## Start ddbb in test mode and run api migrations to initialize it
+	docker-compose -f docker-compose.test.yml up -d ddbb api
+	docker-compose -f docker-compose.test.yml exec api yarn migration:run
+	docker-compose stop api
+
+tests-e2e-api: ## Run app tests with cypress
+	cd phones-api && DOTENV_CONFIG_PATH=.env.test NODE_OPTIONS='-r dotenv/config' yarn test:e2e
 
 tests-e2e-app: ## Run app tests with cypress
 	cd phones-app yarn test:e2e

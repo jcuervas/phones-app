@@ -1,14 +1,15 @@
 import {createTheme} from "@mui/material/styles";
+import variables from './variables.module.scss'
 
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#3f9ab5',
-      light: '#a9def1',
-      dark: '#0c4454',
+      main: variables.primaryMain,
+      light: variables.primaryLight,
+      dark: variables.primaryDark,
     },
     secondary: {
-      main: '#f56000',
+      main: variables.secondaryMain,
     },
   },
   typography: {

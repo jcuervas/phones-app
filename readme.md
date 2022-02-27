@@ -52,10 +52,13 @@ To start all containers and run the app in production mode run ``make prod``.
 This will build and start all containers. After that will run migrations and seed Database
 
 ## Tests
-run ``make tests-e2e-api`` to run api tests and ``make tests-e2e-app`` to run app tests
+There is a docker-compose.tests for this. Run ``make api-test-start``  
+This will setup a test database, start api to run migrations (only first time is really needed) and then stop api
+After that run ``make tests-e2e-api`` to run api tests.  
+App tests relies on cypress, ``make tests-e2e-app`` to run app tests
 
 ## Api Docs
-To see api docs just start ddbb and api containers and navigate to ``http://localhost:3005``
+To see api docs just start ddbb and api containers and navigate to ``http://localhost:3005/api``
 
 ## Author notes
 There are some more things i couldn't cover just for a matter of time like error handling, 

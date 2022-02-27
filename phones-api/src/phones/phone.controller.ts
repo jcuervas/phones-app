@@ -1,14 +1,13 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
-  Query,
+  Controller,
   Delete,
+  Get,
   HttpStatus,
-  HttpException,
+  Param,
+  Post,
+  Put,
+  Query,
   Res,
 } from '@nestjs/common';
 import { PhoneService } from './phone.service';
@@ -49,13 +48,13 @@ export class PhoneController {
     }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePhoneDto: UpdatePhoneDto) {
-    return this.phonesService.update(+id, updatePhoneDto);
+  @Put(':slug')
+  update(@Param('slug') slug: string, @Body() updatePhoneDto: UpdatePhoneDto) {
+    return this.phonesService.update(slug, updatePhoneDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.phonesService.remove(+id);
+  @Delete(':slug')
+  remove(@Param('slug') slug: string) {
+    return this.phonesService.remove(slug);
   }
 }
