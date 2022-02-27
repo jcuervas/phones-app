@@ -7,3 +7,4 @@
 /.idea/
 *.log
 /mysql/.env
+/mysql/data-test/
