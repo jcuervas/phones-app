@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {Phone} from "components/phones/phone.model";
 import styles from '../../styles/Home.module.scss'
+import {theme} from "../../styles/theme/theme";
 
 interface PhoneFormProps {
   phone?: Phone
@@ -11,7 +12,7 @@ interface PhoneFormProps {
 
 export default function PhoneForm(props: PhoneFormProps) {
   const [phone, setPhone] = useState<Phone>(props.phone as Phone)
-  const {register, handleSubmit, watch, formState: {errors}} = useForm({
+  const {register, handleSubmit, formState: {errors}} = useForm({
     reValidateMode: "onBlur",
     shouldFocusError: true
   });
@@ -35,11 +36,12 @@ export default function PhoneForm(props: PhoneFormProps) {
             error={!!errors.name}
             value={phone && phone.name}
             {...register('name', {
-              required: true,
+              required: {value: true, message: 'required field'},
               onChange: ev => setPhone({...phone, name: ev.target.value})
             })}
             label="Name"
             size="small"/>
+          {errors.name && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
 
         </FormControl>
         <FormControl sx={{mb: 4}}>
@@ -51,6 +53,7 @@ export default function PhoneForm(props: PhoneFormProps) {
             multiline={true}
             label="Description"
             size="small"/>
+          {errors.description && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
         </FormControl>
         <FormControl sx={{mb: 4}}>
           <TextField
@@ -60,6 +63,7 @@ export default function PhoneForm(props: PhoneFormProps) {
               onChange: ev => setPhone({...phone, manufacturer: ev.target.value})})}
             label="Manufacturer"
             size="small"/>
+          {errors.manufacturer && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
         </FormControl>
         <FormControl sx={{mb: 4}}>
           <TextField
@@ -69,6 +73,7 @@ export default function PhoneForm(props: PhoneFormProps) {
               onChange: ev => setPhone({...phone, screen: ev.target.value})})}
             label="screen"
             size="small"/>
+          {errors.screen && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
         </FormControl>
         <FormControl sx={{mb: 4}}>
           <TextField
@@ -78,6 +83,7 @@ export default function PhoneForm(props: PhoneFormProps) {
               onChange: ev => setPhone({...phone, ram: ev.target.value})})}
             label="RAM"
             size="small"/>
+          {errors.ram && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
         </FormControl>
         <FormControl sx={{mb: 4}}>
           <TextField
@@ -87,6 +93,7 @@ export default function PhoneForm(props: PhoneFormProps) {
               onChange: ev => setPhone({...phone, processor: ev.target.value})})}
             label="processor"
             size="small"/>
+          {errors.processor && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
         </FormControl>
         <FormControl sx={{mb: 4}}>
           <TextField
@@ -96,6 +103,23 @@ export default function PhoneForm(props: PhoneFormProps) {
               onChange: ev => setPhone({...phone, color: ev.target.value})})}
             label="Color"
             size="small"/>
+          {errors.color && <Typography variant="body2" sx={{color: theme.palette.error.main }}>Please enter a value</Typography>}
+        </FormControl>
+        <FormControl sx={{mb: 4}}>
+          <TextField
+            error={!!errors.price}
+            type="number"
+            value={phone && phone.price}
+            {...register('price', {
+              required: true,
+              onChange: ev => setPhone({...phone, price: ev.target.value}),
+              pattern: {value: /[0-9]*/, message: "please, enter a positive numeric value"}
+            }
+            )}
+            label="Price"
+            size="small"/>
+          {errors.price && <Typography variant="body2" sx={{color: theme.palette.error.main }}>please, enter a positive numeric value</Typography>}
+
         </FormControl>
         <Button variant="contained" type="submit" color="primary">Save Phone</Button>
       </form>

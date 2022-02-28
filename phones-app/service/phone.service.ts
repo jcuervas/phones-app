@@ -28,12 +28,12 @@ export class PhoneService {
     if (data.slug) {
       const insertResult = await this.update(data)
       if (insertResult.data.affected > 0) {
-        return true
+        return data
       }
     } else {
       const createResult = await this.create(data)
       if (createResult.data.id) {
-        return true
+        return createResult.data
       }
     }
     return false

@@ -24,6 +24,9 @@ export class PhoneService {
       .replace(/\p{Diacritic}/gu, '')
       .toLowerCase()
       .replace(/\s+/g, '-');
+    if (!createPhoneDto.imageFileName) {
+      createPhoneDto.imageFileName = [];
+    }
     return this.repository.save({ ...createPhoneDto, slug });
   }
 

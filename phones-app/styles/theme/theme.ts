@@ -11,6 +11,9 @@ export const theme = createTheme({
     secondary: {
       main: variables.secondaryMain,
     },
+    error: {
+      main: variables.errorMain
+    }
   },
   typography: {
     fontFamily: 'Inter'

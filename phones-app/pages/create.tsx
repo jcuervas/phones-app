@@ -20,7 +20,8 @@ export default function CreatePage(props: CreatePageProps) {
 
   async function onSubmit(data: Phone) {
     const phoneService = new PhoneService(false)
-    if (await phoneService.createOrUpdate(data)) {
+    const savedPhone = await phoneService.createOrUpdate(data);
+    if (savedPhone) {
       setDialog(true)
     }
   }
@@ -36,12 +37,9 @@ export default function CreatePage(props: CreatePageProps) {
       <ConfirmDialog
         state={dialog}
         messages={{
-          title: 'Phone saved',
-          message: 'do you want to continue editing or go back to listing?',
-          ok: 'continue',
+          title: 'Phone saved succesfully',
           cancel: 'go back'
         }}
-        onOk={() => setDialog(false)}
         onCancel={() => router.replace('/')}/>
 
     </div>

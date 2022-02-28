@@ -20,8 +20,10 @@ export class PhoneController {
   constructor(private readonly phonesService: PhoneService) {}
 
   @Post()
-  create(@Body() createPhoneDto: CreatePhoneDto) {
-    return this.phonesService.create(createPhoneDto);
+  async create(@Body() createPhoneDto: CreatePhoneDto) {
+    const result = await this.phonesService.create(createPhoneDto);
+    console.log(result);
+    return result;
   }
 
   @Get()

@@ -7,8 +7,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 interface AlertDialogProps {
   state: boolean
-  messages: {title: string, message: string, ok: string, cancel: string},
-  onOk: () => void
+  messages: {title: string, message?: string, ok?: string, cancel?: string},
+  onOk?: () => void
   onCancel: () => void
 }
 
@@ -31,7 +31,7 @@ export default function ConfirmDialog(props: AlertDialogProps) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.onOk}>{props.messages.ok}</Button>
+          {props.onOk && <Button onClick={props.onOk}>{props.messages.ok}</Button>}
           <Button onClick={props.onCancel} autoFocus>
             {props.messages.cancel}
           </Button>

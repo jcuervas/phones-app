@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (['POST'].includes(req.method as string)) {
       const phoneService = new PhoneService()
       const result = await phoneService.create(req.body as unknown as Phone)
-      res.status(200).send(result)
+      res.status(200).send(result.data)
     }
   } catch (e) {
     console.log({e})

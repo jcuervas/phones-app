@@ -4,10 +4,14 @@ $primaryDark: #076e4a;
 
 $secondaryMain: #f56000;
 
+$errorMain: #ab0000;
+
 :export {
   primaryMain: $primaryMain;
   primaryLight: $primaryLight;
   primaryDark: $primaryDark;
 
   secondaryMain: $secondaryMain;
+
+  errorMain: $errorMain;
 }
