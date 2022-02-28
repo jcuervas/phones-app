@@ -10,6 +10,8 @@ interface PhoneFiltersProps {
   onFiltersChanged: (params: PhoneQueryOptions) => void
   totalPhones: number
 }
+let timeout: ReturnType<typeof setTimeout>
+
 
 export default function PhoneFilters(props: PhoneFiltersProps) {
   const {totalPhones, onFiltersChanged} = props
@@ -30,6 +32,7 @@ export default function PhoneFilters(props: PhoneFiltersProps) {
   }
 
   function filtersChanged() {
+    console.log('filtersChanged', page)
     onFiltersChanged({
       ...pageSize ? {pageSize: pageSize.toString()} : {},
       ...page ? {page: page.toString()} : {},
@@ -41,21 +44,26 @@ export default function PhoneFilters(props: PhoneFiltersProps) {
     filtersChanged()
   }, [page, pageSize])
 
+  useEffect(() => {
+    if (!query || query.length > 1) {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        if (page !== 1) setPage(1)
+        else filtersChanged()
+      }, 1500)
+    }
+  }, [query])
+
   function getPages() {
     return Math.ceil(totalPhones / pageSize)
   }
 
-  let timeout: ReturnType<typeof setTimeout>
 
-  function onSearchKeyPress(ev: KeyboardEvent<HTMLDivElement>) {
+  function onKeyPressEnter(ev: KeyboardEvent<HTMLDivElement>) {
     if (ev.code === 'Enter') {
-      filtersChanged()
-    }
-    if (!query || query.length > 2) {
+      if (page !== 1) setPage(1)
+      else filtersChanged()
       clearTimeout(timeout)
-      setTimeout(() => {
-        filtersChanged()
-      }, 1000)
     }
   }
 
@@ -100,7 +108,7 @@ export default function PhoneFilters(props: PhoneFiltersProps) {
             <StyledInputBase
               value={query}
               onChange={(ev) => setQuery(ev.target.value)}
-              onKeyPress={onSearchKeyPress}
+              onKeyPress={onKeyPressEnter}
               placeholder="Search…"
               inputProps={{'aria-label': 'search'}}
             />
