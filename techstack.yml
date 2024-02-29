@@ -2,7 +2,7 @@ repo_name: jcuervas/phones-app
 report_id: 6fab0a79efd2e8bd49bdacb259c7f257
 version: 0.1
 repo_type: Public
-timestamp: '2024-02-01T18:45:51+00:00'
+timestamp: '2024-02-29T19:50:06+00:00'
 requested_by: jcuervas
 provider: github
 branch: master
@@ -97,7 +97,7 @@ tools:
   last_updated_by: jcuervas
   last_updated_on: 2022-02-25 19:31:21.000000000 Z
 - name: Next.js
-  description: 'A small framework for server-rendered universal JavaScript apps '
+  description: A small framework for server-rendered universal JavaScript apps
   website_url: https://nextjs.org/
   version: 12.1.0
   open_source: true
@@ -277,7 +277,7 @@ tools:
   last_updated_by: jcuervas
   last_updated_on: 2022-02-25 19:31:21.000000000 Z
 - name: Prettier
-  description: 'Prettier is an opinionated code formatter. '
+  description: Prettier is an opinionated code formatter.
   website_url: https://prettier.io/
   version: 2.5.1
   license: MIT
@@ -291,7 +291,7 @@ tools:
   last_updated_by: jcuervas
   last_updated_on: 2022-02-25 19:31:21.000000000 Z
 - name: SuperTest
-  description: 'A library for testing node.js HTTP servers '
+  description: A library for testing node.js HTTP servers
   website_url: https://www.npmjs.com/package/supertest
   version: 6.2.2
   license: MIT
